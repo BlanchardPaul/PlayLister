@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="displaySeries">
        <attribute name="title">
@@ -48,7 +48,7 @@
            </spacer>
           </item>
           <item row="2" column="4">
-           <widget class="QComboBox" name="comboBox">
+           <widget class="QComboBox" name="comboBoxEpisode">
             <item>
              <property name="text">
               <string>Episode 1</string>
@@ -67,42 +67,42 @@
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="QLabel" name="label_5">
+           <widget class="QLabel" name="labelSerieType">
             <property name="text">
              <string>Genre de la Série 1</string>
             </property>
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QLabel" name="label_2">
+           <widget class="QLabel" name="labelColoneSerieType">
             <property name="text">
              <string>Genre</string>
             </property>
            </widget>
           </item>
           <item row="0" column="4">
-           <widget class="QLabel" name="label_3">
+           <widget class="QLabel" name="labelColoneEpisode">
             <property name="text">
              <string>Episodes</string>
             </property>
            </widget>
           </item>
           <item row="0" column="0">
-           <widget class="QLabel" name="label">
+           <widget class="QLabel" name="labelColoneSerieName">
             <property name="text">
              <string>Série</string>
             </property>
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="label_4">
+           <widget class="QLabel" name="labelSerieName">
             <property name="text">
              <string>Titre de la Série 1</string>
             </property>
            </widget>
           </item>
           <item row="2" column="3">
-           <widget class="QComboBox" name="comboBox_2">
+           <widget class="QComboBox" name="comboBoxSeasons">
             <item>
              <property name="text">
               <string>Saison 1</string>
@@ -121,14 +121,14 @@
            </widget>
           </item>
           <item row="0" column="3">
-           <widget class="QLabel" name="label_11">
+           <widget class="QLabel" name="labelColoneSeasons">
             <property name="text">
              <string>Saisons</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="4">
-           <widget class="QPushButton" name="pushButton_2">
+          <item row="2" column="5">
+           <widget class="QPushButton" name="pushButtonLaunchSerie">
             <property name="text">
              <string>Lancer</string>
             </property>
@@ -153,7 +153,7 @@
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
          <item row="0" column="2">
-          <widget class="QLabel" name="label_7">
+          <widget class="QLabel" name="labelColoneMovieType">
            <property name="text">
             <string>Genre</string>
            </property>
@@ -173,21 +173,21 @@
           </spacer>
          </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="label_8">
+          <widget class="QLabel" name="labelMovieName">
            <property name="text">
             <string>Titre du Film</string>
            </property>
           </widget>
          </item>
          <item row="1" column="2">
-          <widget class="QLabel" name="label_6">
+          <widget class="QLabel" name="labelMovieType">
            <property name="text">
             <string>Genre du Film</string>
            </property>
           </widget>
          </item>
          <item row="0" column="0">
-          <widget class="QLabel" name="label_9">
+          <widget class="QLabel" name="labelColoneMovieName">
            <property name="text">
             <string>Nom</string>
            </property>
@@ -201,7 +201,7 @@
           </widget>
          </item>
          <item row="1" column="3">
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="pushButtonLaunchMovie">
            <property name="text">
             <string>Lancer</string>
            </property>
