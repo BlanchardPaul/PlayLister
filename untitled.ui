@@ -16,278 +16,307 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="displaySeries">
-       <attribute name="title">
-        <string>Séries</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <layout class="QGridLayout" name="gridLayout">
-          <item row="2" column="4">
-           <widget class="QComboBox" name="comboBoxEpisode">
-            <item>
-             <property name="text">
-              <string>Episode 1</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Episode 2</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Episode 3</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QLabel" name="labelColoneSerieType">
-            <property name="text">
-             <string>Genre</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <spacer name="verticalSpacer">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="4">
-           <widget class="QLabel" name="labelColoneEpisode">
-            <property name="text">
-             <string>Episodes</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="2">
-           <widget class="QLabel" name="labelSerieType">
-            <property name="text">
-             <string>Genre de la Série 1</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelSerieName">
-            <property name="text">
-             <string>Titre de la Série 1</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelColoneSerieName">
-            <property name="text">
-             <string>Série</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="QComboBox" name="comboBoxSeasons">
-            <item>
-             <property name="text">
-              <string>Saison 1</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Saison 2</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Saison 3</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QLabel" name="labelColoneSeasons">
-            <property name="text">
-             <string>Saisons</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="7">
-           <widget class="QPushButton" name="pushButtonLaunchSerie">
-            <property name="text">
-             <string>Lancer</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="5">
-           <widget class="QLabel" name="labelColoneLangue">
-            <property name="text">
-             <string>Langue</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="6">
-           <widget class="QComboBox" name="comboBoxQuality">
-            <item>
-             <property name="text">
-              <string>Moche</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Beau</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="5">
-           <widget class="QComboBox" name="comboBoxLanguage">
-            <item>
-             <property name="text">
-              <string>Langue 1</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Langue 2</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="0" column="6">
-           <widget class="QLabel" name="labelColoneEpisode_3">
-            <property name="text">
-             <string>Qualité</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_10">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButton">
           <property name="text">
-           <string/>
+           <string>Changer de dossier</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Dossier</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLineEdit" name="lineEdit">
+          <property name="text">
+           <string>C:\...\</string>
           </property>
          </widget>
         </item>
        </layout>
-      </widget>
-      <widget class="QWidget" name="displayMovies">
-       <attribute name="title">
-        <string>Films</string>
-       </attribute>
-       <widget class="QWidget" name="gridLayoutWidget_2">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>1014</width>
-          <height>704</height>
-         </rect>
+      </item>
+      <item>
+       <widget class="QTabWidget" name="tabWidget">
+        <property name="currentIndex">
+         <number>0</number>
         </property>
-        <layout class="QGridLayout" name="gridLayout_2">
-         <item row="2" column="0">
-          <spacer name="verticalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="labelColoneMovieType">
-           <property name="text">
-            <string>Genre</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="labelColoneMovieName">
-           <property name="text">
-            <string>Nom</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="5">
-          <widget class="QPushButton" name="pushButtonLaunchMovie">
-           <property name="text">
-            <string>Lancer</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLabel" name="labelMovieType">
-           <property name="text">
-            <string>Genre du Film</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="labelMovieName">
-           <property name="text">
-            <string>Titre du Film</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="4">
-          <widget class="QComboBox" name="comboMovieQuality">
-           <item>
+        <widget class="QWidget" name="displaySeries">
+         <attribute name="title">
+          <string>Séries</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="2" column="2">
+             <widget class="QLabel" name="labelSerieType">
+              <property name="text">
+               <string>Genre de la Série 1</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="2" column="4">
+             <widget class="QComboBox" name="comboBoxEpisode">
+              <item>
+               <property name="text">
+                <string>Episode 1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Episode 2</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Episode 3</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="0" column="4">
+             <widget class="QLabel" name="labelColoneEpisode">
+              <property name="text">
+               <string>Episodes</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="labelColoneSerieType">
+              <property name="text">
+               <string>Genre</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="labelSerieName">
+              <property name="text">
+               <string>Titre de la Série 1</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="3">
+             <widget class="QComboBox" name="comboBoxSeasons">
+              <item>
+               <property name="text">
+                <string>Saison 1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Saison 2</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Saison 3</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QLabel" name="labelColoneSeasons">
+              <property name="text">
+               <string>Saisons</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelColoneSerieName">
+              <property name="text">
+               <string>Série</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="7">
+             <widget class="QPushButton" name="pushButtonLaunchSerie">
+              <property name="text">
+               <string>Lancer</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="5">
+             <widget class="QComboBox" name="comboBoxLanguage">
+              <item>
+               <property name="text">
+                <string>Langue 1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Langue 2</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="0" column="6">
+             <widget class="QLabel" name="labelColoneEpisode_3">
+              <property name="text">
+               <string>Qualité</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="6">
+             <widget class="QComboBox" name="comboBoxQuality">
+              <item>
+               <property name="text">
+                <string>Moche</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Beau</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="0" column="5">
+             <widget class="QLabel" name="labelColoneLangue">
+              <property name="text">
+               <string>Langue</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_10">
             <property name="text">
-             <string>Moche</string>
+             <string/>
             </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="displayMovies">
+         <attribute name="title">
+          <string>Films</string>
+         </attribute>
+         <widget class="QWidget" name="gridLayoutWidget_2">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1014</width>
+            <height>704</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="2" column="0">
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
-           <item>
-            <property name="text">
-             <string>Beau</string>
-            </property>
+           <item row="0" column="2">
+            <widget class="QLabel" name="labelColoneMovieType">
+             <property name="text">
+              <string>Genre</string>
+             </property>
+            </widget>
            </item>
-          </widget>
-         </item>
-         <item row="1" column="3">
-          <widget class="QComboBox" name="comboMovieLanguage">
-           <item>
-            <property name="text">
-             <string>Français</string>
-            </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelColoneMovieName">
+             <property name="text">
+              <string>Nom</string>
+             </property>
+            </widget>
            </item>
-           <item>
-            <property name="text">
-             <string>Original sous-titré</string>
-            </property>
+           <item row="1" column="5">
+            <widget class="QPushButton" name="pushButtonLaunchMovie">
+             <property name="text">
+              <string>Lancer</string>
+             </property>
+            </widget>
            </item>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QLabel" name="labelColoneMovieLanguage">
-           <property name="text">
-            <string>Langue</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="4">
-          <widget class="QLabel" name="labelColoneMovieQuality">
-           <property name="text">
-            <string>Qualité</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+           <item row="1" column="2">
+            <widget class="QLabel" name="labelMovieType">
+             <property name="text">
+              <string>Genre du Film</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="labelMovieName">
+             <property name="text">
+              <string>Titre du Film</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QComboBox" name="comboMovieQuality">
+             <item>
+              <property name="text">
+               <string>Moche</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Beau</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QComboBox" name="comboMovieLanguage">
+             <item>
+              <property name="text">
+               <string>Français</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Original sous-titré</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QLabel" name="labelColoneMovieLanguage">
+             <property name="text">
+              <string>Langue</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4">
+            <widget class="QLabel" name="labelColoneMovieQuality">
+             <property name="text">
+              <string>Qualité</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
        </widget>
-      </widget>
-     </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
