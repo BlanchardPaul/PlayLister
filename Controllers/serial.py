@@ -1,3 +1,12 @@
+import requests
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+import json
+import argparse
+import pprint
+import stringcomparator;
+
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning);
+
 #
 # Object of type SerialEpisode represents
 # an episode of a season of the serial,
@@ -30,9 +39,8 @@ class SerialSeason:
 
     def addEpisode(self, episode):
         self.ListEpisodes.append(episode);
-
-    def sort(self):
         self.ListEpisodes = sorted(self.ListEpisodes, key=lambda ep: ep.episode);
+        
 
 #
 # Object of type Serial represents
@@ -41,16 +49,32 @@ class SerialSeason:
 #
 class Serial:
     'Abstract object that represents a serial'
-    ### THERE METHOD CALLING API
 
     def __init__(self, name):
         self.name = name;
         self.ListSeasons = [];
+        self.description = False;
+        self.picture = False;
+        self.date = False;
 
     def addSeason(self, season):
         self.ListSeasons.append(season);
-
-    def sort(self):
         self.ListSeasons = sorted(self.ListSeasons, key=lambda season: season.number);
 
+    def getInformationsFromAPI(self):
+        nm = self.name.replace(' ', '+');
+        url = "https://api.themoviedb.org/3/search/tv?api_key=5c4b5a2d5706ecedd2d1071928762491&query=" + nm;
+        response = requests.get(url, {}, verify=False);
+        response_json = response.json();
+        if(response_json["total_results"] == 1):
+            self.initFieldsFromResultAPI(response_json["results"][0]);
+        elif(response_json["total_results"] > 1):
+            for res in response_json["results"]:
+                if(stringcomparator.StringComparator.isTheSame(res["name"].lower(), self.name, 6)):
+                   self.initFieldsFromResultAPI(res);
+                   return;
 
+    def initFieldsFromResultAPI(self, result):
+        self.description = result["overview"];
+        self.date = result["first_air_date"];
+        self.picture = result["poster_path"];
