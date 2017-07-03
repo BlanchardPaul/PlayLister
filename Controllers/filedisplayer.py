@@ -30,7 +30,7 @@ class FileDisplayer:
     #
     # This method take the string which represents the
     # season and episode of the file, and the path, then
-    # it return an object Serial created from the infos
+    # it return an object SerialEpisode created from the infos
     # founded in the path
     #
     def displaySerial(self, seasonAndEpisode, path):
@@ -39,11 +39,11 @@ class FileDisplayer:
         if(splitedPath[0] == "" or splitedPath[1] == ""):
             return(path);
         name = self.getName(splitedPath[0]);
-        season = seasonAndEpisode.split('e')[1];
-        episode = seasonAndEpisode.split('e')[0][1:];
+        episode = seasonAndEpisode.split('e')[1];
+        season = seasonAndEpisode.split('e')[0][1:];
         quality = self.getQuality(splitedPath[1]);
         language = self.getLanguage(splitedPath[1]);
-        return serial.Serial(path, name, season, episode, quality, language, "");
+        return serial.SerialEpisode(path, name, int(season), episode, quality, language, "");
 
     #
     # This method take the string which represents the year
