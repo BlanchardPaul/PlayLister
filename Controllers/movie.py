@@ -3,7 +3,8 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 import json
 import argparse
 import pprint
-import stringcomparator;
+import stringcomparator
+import os
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning);
 
@@ -47,3 +48,6 @@ class Movie:
         self.description = result["overview"];
         self.date = result["release_date"];
         self.picture = result["poster_path"];
+
+    def read(self):
+        os.startfile(self.path);

@@ -4,6 +4,7 @@ import json
 import argparse
 import pprint
 import stringcomparator;
+import os
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning);
 
@@ -24,6 +25,10 @@ class SerialEpisode:
         self.quality = quality;
         self.language = language;
         self.kind = kind;
+
+    def read(self):
+        os.startfile(self.path);
+    
 
 #
 # Object of type SerialSeason represents

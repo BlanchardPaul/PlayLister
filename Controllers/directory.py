@@ -94,7 +94,7 @@ class Directory:
         for ukw in self.ListUnknownFiles:
             print(ukw);
 
-d = Directory("C:/Users/spyro/Desktop");
+d = Directory("C:/Users/spyro/Documents/GitHub/PlayLister/Controllers");
 d.initListFiles();
 d.displayFilesIntoMediaLists();
-d.printMovieList();
+d.printSerialList();
