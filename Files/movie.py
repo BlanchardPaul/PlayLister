@@ -40,6 +40,9 @@ class Movie:
             self.initFieldsFromResultAPI(response_json["results"][0])
         elif(response_json["total_results"] > 1):
             for res in response_json["results"]:
+                if(res["release_date"].split("-")[0] == str(self.date)):
+                    self.initFieldsFromResultAPI(res)
+                    return
                 if(stringcomparator.StringComparator.isTheSame(res["title"].lower(), self.name, 6)):
                     self.initFieldsFromResultAPI(res)
                     return
