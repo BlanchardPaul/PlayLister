@@ -14,5 +14,5 @@ class StringComparator(object):
                     index += 1
                     del nameToCompareList[nameToCompareList.index(m)]
                     break
-        return (lNameTo/10*9 < index if lName > lNameTo else lName/10*9 < index) or (index > lName/10*coeff and index > lNameTo/10*coeff)
+        return (index > lName/10*coeff and index > lNameTo/10*coeff)
         # if the name with less len has 90% in common with the index, or if both have the coeff % in common with the index

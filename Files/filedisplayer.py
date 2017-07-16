@@ -76,7 +76,7 @@ class FileDisplayer:
     # then return it  if none return ""
     #
     def getQuality(self, name):
-        quality = re.search(r"(webrip|brrip|hdtv|dvdrip|bdrip|hdrip)", name)
+        quality = re.search(r"(webrip|brrip|hdtv|dvdrip|bdrip|hdrip|blueray|bluray)", name)
         return "" if quality is None else quality.group(0)
 
     #

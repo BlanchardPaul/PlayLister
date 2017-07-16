@@ -1,23 +1,34 @@
 import urllib.request
-from PyQt5 import QtGui, QtCore
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit, QFileDialog, QTableWidgetItem
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtCore import QRect
 import Files
+import Interface
 from Files import movie
 
 class PlayListerViewerMovie():
 
     def __init__(self, mainWindow):
         self.ui = mainWindow
+        self.ui.tableWidget.horizontalHeader().setStretchLastSection(False)
+        self.ui.tableWidget.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
+        self.ui.tableWidget.horizontalHeader().setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
+        self.ui.tableWidget.horizontalHeader().setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
+        self.ui.tableWidget.horizontalHeader().setSectionResizeMode(3, QtWidgets.QHeaderView.ResizeToContents)
         self.ui.tableWidget.clicked.connect(
             lambda item: self.clickOnItemInMovieTable(item))
         self.ui.tableWidget.doubleClicked.connect(
             lambda item: self.doubleClickOnItemInMovieTable(item))
+        self.ui.label_3.mousePressEvent = self.clickOnDescriptionLabel
         
-    def populateMovieTable(self, builtDir):
-        self.builtDir = builtDir
+    def populateMovieTable(self, builtDir = None):
+        if(builtDir):
+            self.builtDir = builtDir
+        elif not(hasattr(self, 'builtDir')):
+            return
         self.ui.label_3.setText("")
         self.ui.label_4.setPixmap(QPixmap())
         for i in reversed(range(self.ui.tableWidget.rowCount())):
@@ -29,15 +40,16 @@ class PlayListerViewerMovie():
             self.ui.tableWidget.setItem(i, 2, QTableWidgetItem(self.builtDir.ListMovieFiles[i].language))
             self.ui.tableWidget.setItem(i, 3, QTableWidgetItem(self.builtDir.ListMovieFiles[i].quality))
 
-    def getMovie(self, item):
-        movie = self.builtDir.ListMovieFiles[item.row()]
-        movie.getInformationsFromAPI()
-        if(movie.description):
-            self.ui.label_3.setText(movie.description)
+    def initMovie(self, item):
+        self.activeMovie = self.builtDir.ListMovieFiles[item.row()]
+        self.activeMovie.getInformationsFromAPI()
+        if(self.activeMovie.description):
+            self.ui.label_3.setText(self.activeMovie.description)
         else:
-            self.ui.label_3.setText("")
-        if(movie.picture):
-            with urllib.request.urlopen("http://image.tmdb.org/t/p/w500/" + movie.picture) as url:
+            self.ui.label_3.setText("No correspondence for \"" + self.activeMovie.name + "\" in the database. Click here to rename the movie.")
+            
+        if(self.activeMovie.picture):
+            with urllib.request.urlopen("http://image.tmdb.org/t/p/w500/" + self.activeMovie.picture) as url:
                 data = url.read()
             pixmap = QPixmap()
             pixmap.loadFromData(data)
@@ -45,12 +57,21 @@ class PlayListerViewerMovie():
             self.ui.label_4.setPixmap(pixmap)
         else:
             self.ui.label_4.setPixmap(QPixmap())
-            
-        return movie
     
     def clickOnItemInMovieTable(self, item):
-        self.getMovie(item)
+        self.initMovie(item)
 
     def doubleClickOnItemInMovieTable(self, item):
-        movie = self.getMovie(item)
-        movie.read()
+        self.initMovie(item)
+        self.activeMovie.read()
+
+    def clickOnDescriptionLabel(self, event):
+        if (not(hasattr(self, 'activeMovie')) or (self.activeMovie.description)):
+            return
+        text, ok = QInputDialog.getText(None, 'Rename', 'Enter the new name of the movie :')
+        if not (ok):
+            return
+        self.activeMovie.rename(text)
+        self.builtDir.ListMovieFiles = sorted(self.builtDir.ListMovieFiles, key=lambda mov: mov.name)
+        self.populateMovieTable()
+        

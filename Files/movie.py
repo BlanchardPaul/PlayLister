@@ -47,8 +47,16 @@ class Movie:
 
     def initFieldsFromResultAPI(self, result):
         self.description = result["overview"]
-        self.date = result["release_date"]
+        self.completeDate = result["release_date"]
         self.picture = result["poster_path"]
 
     def read(self):
         os.startfile(self.path)
+                
+    def rename(self, newName):
+        self.name = newName.lower()
+        oldName = self.path.split('\\')[-1]
+        newName = newName.replace(' ', '.') + "." + self.date + oldName.split(self.date)[1]
+        newPath = "\\".join(self.path.split('\\')[:-1 or None]) + "\\" + newName
+        os.rename(self.path, newPath)
+        self.path = newPath

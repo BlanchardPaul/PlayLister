@@ -25,7 +25,7 @@ class PlayListerViewer(QtWidgets.QMainWindow):
             self.serialWindow = playlisterviewerserial.PlayListerViewerSerial(self.ui)
         except Exception as e:
             print(e)
-
+    
     def selectDirButton(self):
         dir_path = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select a directory')
         if(dir_path):

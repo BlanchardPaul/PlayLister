@@ -11,6 +11,10 @@ class PlayListerViewerSerial():
 
     def __init__(self, mainWindow):
         self.ui = mainWindow
+        self.ui.treeWidget.header().setStretchLastSection(False)
+        self.ui.treeWidget.header().setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
+        self.ui.treeWidget.header().setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
+        self.ui.treeWidget.header().setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
         self.ui.treeWidget.clicked.connect(
             lambda item: self.clickOnItemInSerialTree(item))
         self.ui.treeWidget.doubleClicked.connect(
@@ -38,7 +42,7 @@ class PlayListerViewerSerial():
         if(serial.description):
             self.ui.label_5.setText(serial.description)
         else:
-            self.ui.label_5.setText("")
+            self.ui.label_5.setText("No correspondence found in the database. Rename the serial to search for more matches ?")
         if(serial.picture):
             with urllib.request.urlopen("http://image.tmdb.org/t/p/w500/" + serial.picture) as url:
                 data = url.read()

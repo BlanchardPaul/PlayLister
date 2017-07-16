@@ -17,3 +17,4 @@ if __name__=='__main__':
     untitled = PlayListerViewer()
     untitled.show()
     sys.exit(app.exec_())
+input()

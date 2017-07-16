@@ -10,7 +10,7 @@ from Utils import stringcomparator
 class Directory:
     'A directory that contains files of any types'
 
-    AUTHORIZED_EXT = [ ".avi", ".mpeg", ".pdf", ".mkv" ]
+    AUTHORIZED_EXT = [ ".avi", ".mpeg", ".mkv" ]
     
     def __init__(self, path):
         self.path = path
