@@ -33,6 +33,7 @@ class PlayListerViewerMovie():
         self.ui.label_4.setPixmap(QPixmap())
         for i in reversed(range(self.ui.tableWidget.rowCount())):
             self.ui.tableWidget.removeRow(i)
+        self.builtDir.ListMovieFiles = sorted(self.builtDir.ListMovieFiles, key=lambda mov: mov.name)
         for i in range (len(self.builtDir.ListMovieFiles)):
             self.ui.tableWidget.insertRow(i)
             self.ui.tableWidget.setItem(i, 0, QTableWidgetItem(self.builtDir.ListMovieFiles[i].name))
@@ -66,12 +67,11 @@ class PlayListerViewerMovie():
         self.activeMovie.read()
 
     def clickOnDescriptionLabel(self, event):
-        if (not(hasattr(self, 'activeMovie')) or (self.activeMovie.description)):
+        if (not(hasattr(self, 'activeMovie'))):
             return
         text, ok = QInputDialog.getText(None, 'Rename', 'Enter the new name of the movie :')
         if not (ok):
             return
-        self.activeMovie.rename(text)
-        self.builtDir.ListMovieFiles = sorted(self.builtDir.ListMovieFiles, key=lambda mov: mov.name)
+        self.activeMovie.rename(text.lower())
         self.populateMovieTable()
         

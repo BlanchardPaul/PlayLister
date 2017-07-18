@@ -19,13 +19,18 @@ class PlayListerViewerSerial():
             lambda item: self.clickOnItemInSerialTree(item))
         self.ui.treeWidget.doubleClicked.connect(
             lambda item: self.doubleClickOnItemInSerialTree(item))
+        self.ui.label_5.mousePressEvent = self.clickOnDescriptionLabel
 
-    def populateSerialTable(self, builtDir):
-        self.builtDir = builtDir
+    def populateSerialTable(self, builtDir = None):
+        if(builtDir):
+            self.builtDir = builtDir
+        elif not(hasattr(self, 'builtDir')):
+            return
         self.ui.treeWidget.clear()
+        self.builtDir.ListSerialFiles = sorted(self.builtDir.ListSerialFiles, key=lambda serial: serial.name)
         self.ui.label_6.setPixmap(QPixmap())
         self.ui.label_5.setText("")
-        for serial in builtDir.ListSerialFiles:
+        for serial in self.builtDir.ListSerialFiles:
             Ser = QTreeWidgetItem(self.ui.treeWidget, [serial.name])
             for season in serial.ListSeasons:
                 Sea = QTreeWidgetItem(Ser, ["Saison " + str(season.number)])
@@ -37,14 +42,14 @@ class PlayListerViewerSerial():
     def clickOnItemInSerialTree(self, item):
         while(item.parent().row() != -1):
             item = item.parent()
-        serial = self.builtDir.ListSerialFiles[item.row()]
-        serial.getInformationsFromAPI()
-        if(serial.description):
-            self.ui.label_5.setText(serial.description)
+        self.activeSerial = self.builtDir.ListSerialFiles[item.row()]
+        self.activeSerial.getInformationsFromAPI()
+        if(self.activeSerial.description):
+            self.ui.label_5.setText(self.activeSerial.description)
         else:
             self.ui.label_5.setText("No correspondence found in the database. Rename the serial to search for more matches ?")
-        if(serial.picture):
-            with urllib.request.urlopen("http://image.tmdb.org/t/p/w500/" + serial.picture) as url:
+        if(self.activeSerial.picture):
+            with urllib.request.urlopen("http://image.tmdb.org/t/p/w500/" + self.activeSerial.picture) as url:
                 data = url.read()
             pixmap = QPixmap()
             pixmap.loadFromData(data)
@@ -57,4 +62,19 @@ class PlayListerViewerSerial():
         if(item.parent().parent().row() == -1):
             return
         self.builtDir.ListSerialFiles[item.parent().parent().row()].ListSeasons[item.parent().row()].ListEpisodes[item.row()].read()
-        
+
+    def clickOnDescriptionLabel(self, event):
+        if (not(hasattr(self, 'activeSerial'))):
+            return
+        text, ok = QInputDialog.getText(None, 'Rename', 'Enter the new name of the serial :')
+        if not (ok):
+            return
+        ListEpisodes = []
+        for season in self.activeSerial.ListSeasons:
+            for episode in season.ListEpisodes:
+                episode.rename(text.lower())
+                ListEpisodes.append(episode)
+        self.builtDir.ListSerialFiles.remove(self.activeSerial)        
+        for episode in ListEpisodes:
+            self.builtDir.displayInsertionInSerialList(episode)
+        self.populateSerialTable()

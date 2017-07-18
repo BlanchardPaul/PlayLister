@@ -5,6 +5,7 @@ import argparse
 import pprint
 import os
 import Utils
+import re
 from Utils import stringcomparator
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
@@ -29,7 +30,15 @@ class SerialEpisode:
 
     def read(self):
         os.startfile(self.path)
-    
+        
+    def rename(self, newName):
+        seasonAndEpisode = re.search(r"S\d+E\d+", self.path).group(0)
+        self.name = newName
+        oldName = self.path.split('\\')[-1]
+        newName = newName.replace(' ', '.') + "." + seasonAndEpisode + oldName.split(seasonAndEpisode)[1]
+        newPath = "\\".join(self.path.split('\\')[:-1 or None]) + "\\" + newName
+        os.rename(self.path, newPath)
+        self.path = newPath
 
 #
 # Object of type SerialSeason represents
