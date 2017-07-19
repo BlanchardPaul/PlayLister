@@ -1,6 +1,6 @@
 import re
 import Files
-from Files import movie, serial
+from Files import movie, serial, unknown
 
 
 #
@@ -26,7 +26,7 @@ class FileDisplayer:
         match = re.search(r"(19|20)\d{2}", name)
         if(match):
             return self.displayMovie(match.group(0), name, path)
-        return path # If it's none, juste return the path
+        return  unknown.Unknown(path) # If it's none, return an object unknown
 
     #
     # This method take the string which represents the

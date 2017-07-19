@@ -45,6 +45,7 @@ class Directory:
                 self.displayInsertionInSerialList(file)
             else:
                 self.ListUnknownFiles.append(file)
+        self.ListFiles = []
 
     def displayInsertionInSerialList(self, file):
         for sf in self.ListSerialFiles:

@@ -9,7 +9,7 @@ from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtCore import QRect
 import Interface
 import Files
-from Interface import playlister, playlisterviewermovie, playlisterviewerserial
+from Interface import playlister, playlisterviewermovie, playlisterviewerserial, playlisterviewerunknown
 from Files import directory
 
 class PlayListerViewer(QtWidgets.QMainWindow):
@@ -23,6 +23,7 @@ class PlayListerViewer(QtWidgets.QMainWindow):
             self.ui.pushButton.clicked.connect(self.selectDirButton)
             self.movieWindow = playlisterviewermovie.PlayListerViewerMovie(self.ui)
             self.serialWindow = playlisterviewerserial.PlayListerViewerSerial(self.ui)
+            self.unknownWindow = playlisterviewerunknown.PlayListerViewerUnknown(self)
         except Exception as e:
             print(e)
     
@@ -35,3 +36,4 @@ class PlayListerViewer(QtWidgets.QMainWindow):
             self.builtDir.displayFilesIntoMediaLists()
             self.movieWindow.populateMovieTable(self.builtDir)
             self.serialWindow.populateSerialTable(self.builtDir)
+            self.unknownWindow.populateUnknownTable(self.builtDir)

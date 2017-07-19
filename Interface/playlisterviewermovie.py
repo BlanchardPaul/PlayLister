@@ -41,8 +41,10 @@ class PlayListerViewerMovie():
             self.ui.tableWidget.setItem(i, 2, QTableWidgetItem(self.builtDir.ListMovieFiles[i].language))
             self.ui.tableWidget.setItem(i, 3, QTableWidgetItem(self.builtDir.ListMovieFiles[i].quality))
 
-    def initMovie(self, item):
+    def initMovie(self, item, read = False):
         self.activeMovie = self.builtDir.ListMovieFiles[item.row()]
+        if(read):
+            self.activeMovie.read()
         self.activeMovie.getInformationsFromAPI()
         if(self.activeMovie.description):
             self.ui.label_3.setText(self.activeMovie.description)
@@ -63,8 +65,7 @@ class PlayListerViewerMovie():
         self.initMovie(item)
 
     def doubleClickOnItemInMovieTable(self, item):
-        self.initMovie(item)
-        self.activeMovie.read()
+        self.initMovie(item, True)
 
     def clickOnDescriptionLabel(self, event):
         if (not(hasattr(self, 'activeMovie'))):
