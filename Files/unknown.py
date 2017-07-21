@@ -10,6 +10,7 @@ class Unknown:
         os.startfile(self.path)
         
     def rename(self, text):
-        newPath = "\\".join(self.path.split('\\')[:-1 or None]) + "\\" + text + self.path.split('.')[-1]
+        newPath = "\\".join(self.path.split('\\')[:-1 or None]) + "\\" + ''.join(e for e in text.lower() if e.isalnum() or e.isspace()).replace(' ', '.') + self.path.split('.')[-1]
+        print(newPath)
         os.rename(self.path, newPath)
         self.path = newPath

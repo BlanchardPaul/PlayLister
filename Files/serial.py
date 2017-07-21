@@ -33,9 +33,9 @@ class SerialEpisode:
         
     def rename(self, newName):
         seasonAndEpisode = re.search(r"S\d+E\d+", self.path).group(0)
-        self.name = newName
+        self.name = ''.join(e for e in newName.lower() if e.isalnum() or e.isspace())
         oldName = self.path.split('\\')[-1]
-        newName = newName.replace(' ', '.') + "." + seasonAndEpisode + oldName.split(seasonAndEpisode)[1]
+        newName = self.name.replace(' ', '.') + "." + seasonAndEpisode + oldName.split(seasonAndEpisode)[1]
         newPath = "\\".join(self.path.split('\\')[:-1 or None]) + "\\" + newName
         os.rename(self.path, newPath)
         self.path = newPath

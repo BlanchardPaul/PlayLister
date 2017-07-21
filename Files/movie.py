@@ -57,9 +57,9 @@ class Movie:
         os.startfile(self.path)
                 
     def rename(self, newName):
-        self.name = newName.lower()
+        self.name = ''.join(e for e in newName.lower() if e.isalnum() or e.isspace())
         oldName = self.path.split('\\')[-1]
-        newName = newName.replace(' ', '.') + "." + self.date + oldName.split(self.date)[1]
+        newName = self.name.replace(' ', '.') + "." + self.date + oldName.split(self.date)[1]
         newPath = "\\".join(self.path.split('\\')[:-1 or None]) + "\\" + newName
         os.rename(self.path, newPath)
         self.path = newPath

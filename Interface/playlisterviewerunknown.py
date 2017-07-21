@@ -8,6 +8,7 @@ from PyQt5.QtCore import QRect
 import Files
 import Interface
 from Interface.moviedialog import *
+from Interface.serialdialog import *
 
 class PlayListerViewerUnknown():
 
@@ -66,8 +67,8 @@ class PlayListerViewerUnknown():
         elif(form.lineEdit_3.text() == ""):
             self.warningFieldNotTyped("The language should be precised.")
             return
-        self.activeUnknown.rename(form.lineEdit.text().replace(' ', '.') + "." + form.dateEdit.date().toString('yyyy') 
-                                  + "." + form.lineEdit_2.text().replace(' ', '.') + "." + form.lineEdit_3.text().replace(' ', '.') + ".")
+        self.activeUnknown.rename(form.lineEdit.text() + " " + form.dateEdit.date().toString('yyyy') 
+                                  + " " + form.lineEdit_2.text() + " " + form.lineEdit_3.text() + " ")
         self.builtDir.ListFiles.append(self.activeUnknown.path)
         self.builtDir.displayFilesIntoMediaLists()
         self.playListerViewer.movieWindow.populateMovieTable()
@@ -75,8 +76,48 @@ class PlayListerViewerUnknown():
         self.populateUnknownTable()
         
     def clickOnCreateSerial(self, event):
-        print("create a serial")
-        
+        form = SerialDialog()
+        form.setupUi(form)
+        if(form.exec_() == 0):
+            return
+        if(form.lineEdit.text() == ""):
+            self.warningFieldNotTyped("The name should be precised.")
+            return
+        elif(form.lineEdit_4.text() == ""):
+            self.warningFieldNotTyped("The season should be precised.")
+            return
+        elif(not self.checkDigit(form.lineEdit_4.text(), 2, "season")):
+            return
+        elif(form.lineEdit_5.text() == ""):
+            self.warningFieldNotTyped("The episode should be precised.")
+            return
+        elif(not self.checkDigit(form.lineEdit_5.text(), None, "episode")):
+            return
+        elif(form.lineEdit_2.text() == ""):
+            self.warningFieldNotTyped("The quality should be precised.")
+            return
+        elif(form.lineEdit_3.text() == ""):
+            self.warningFieldNotTyped("The language should be precised.")
+            return
+        self.activeUnknown.rename(form.lineEdit.text() + " S" + form.lineEdit_4.text() + "E" +
+                                 form.lineEdit_5.text() + " " + form.lineEdit_2.text() + " " + form.lineEdit_3.text() + " ")
+        self.builtDir.ListFiles.append(self.activeUnknown.path)
+        self.builtDir.displayFilesIntoMediaLists()
+        self.playListerViewer.serialWindow.populateSerialTable()
+        del self.builtDir.ListUnknownFiles[self.index]
+        self.populateUnknownTable()
+
+    def checkDigit(self, field, exceptedDigit, mediaType):
+        try:
+            int(field)
+        except ValueError:
+            self.warningFieldNotTyped("The field for " + mediaType + " should only comport numbers.")
+            return False
+        if(exceptedDigit != None and len(field) != exceptedDigit):
+            self.warningFieldNotTyped("The field for " + mediaType + " does not comport enought or comport too much numbers (excepted = " + str(exceptedDigit) + " ).")
+            return False
+        return True
+    
     def warningFieldNotTyped(self, txt):
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Warning)
